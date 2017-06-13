@@ -1,7 +1,7 @@
 #ifndef __BOMB_H__
 #define __BOMB_H__
 
-
+//µÎµÎµÄ·äÃùÆ÷£¬ÎÒ½ĞËübomb
 
 #define GPFCON (*((volatile unsigned int*)0X7F0080A0))
 #define GPFDAT (*((volatile unsigned int*)0X7F0080A4))

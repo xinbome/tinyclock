@@ -10,7 +10,7 @@ int main(void){
 	//LEDAny_TurnOn(3);	
 	//init();
 	//bomb();		
-	key_init();
+
 	key_test();
 	return 0;
 }

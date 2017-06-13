@@ -23,32 +23,28 @@ void init()
 
 void bombon()
 {
-	
+	//尝试了一下，如果这里和下面直接GPFDAT |= 0x1<<14这样对寄存器操作，蜂鸣器不会响	
     unsigned int value = 0;	
-	value = GPFDAT;     /*读取GPFCON0原值*/
-	/*将GPFDAT的4号位设清空为零，GPF14输出低电平，BEE*/
+	value = GPFDAT;     
+	/*将GPFDAT的4号位设1，控制端输出高电平BEE*/
 	value |= 0x1<<14;
-	GPFDAT = value;	   /*将修改后的值写回寄存器，使设置生效*/
+	GPFDAT = value;	   
 }
 
 void bomboff()
 {	
  	unsigned int value = 0;
-	value = GPFDAT;     /*读取GPFCON0原值*/
-	/*将GPFDAT的4号位设清空为零，GPF14输出低电平，BEE*/
+	value = GPFDAT;     
+	/*将GPFDAT的4号位设清空为零，GPF14输出低电平*/
 	value &= ~(0x1 << 14);
-	GPFDAT = value;	   /*将修改后的值写回寄存器，使设置生效*/
+	GPFDAT = value;	   
 }
 
 void bomb()
 {
-		
+	init();		
 	bombon();
 	msDelay(10);	
 	bomboff();
-	bombon();
-	msDelay(5);		
-	bomboff();
-	
 
 }

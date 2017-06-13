@@ -13,6 +13,7 @@ void key_init(void)
 
 void key_test(void)
 {
+	key_init();
 	while(1)
 	{			
 		if((GPNDAT&0x0F) == 0x0F)//Î´°´
@@ -23,7 +24,7 @@ void key_test(void)
 		}
 		else //°´ÏÂ
 		{
-			init();
+
 			bomb();					
 			//LEDAll_TurnOn();
 			//LEDAll_TurnOff();	
