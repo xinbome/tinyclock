@@ -16,7 +16,7 @@ int main(void){
 	while(1)
 	{
 	
-		Isr_Eint();
+		;
 	}     
 	
 	return 0;
