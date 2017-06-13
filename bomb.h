@@ -11,7 +11,6 @@ void init(void);
 
 void bomb(void);
 
-void msDelay(int time);
 
 void bomboff(void);
 

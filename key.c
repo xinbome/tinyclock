@@ -1,6 +1,10 @@
+#include "led.h"
 #include "key.h"
+#include "utils.h"
 
 
+
+/*≤È—Ø*/
 void key_init(void)
 {
 	int value;
@@ -78,4 +82,6 @@ void key_test(void)
 						
 	}
 }
+
+
 

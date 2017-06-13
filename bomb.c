@@ -1,15 +1,5 @@
 #include "bomb.h"
-
-
-
-void msDelay(int time)
-{
-	
-	volatile unsigned int i,j;
-	for(i = 0;i < 20000;i++)
-		for(j = 0;j < time;j++);
-}
-
+#include "utils.h"
 
 
 void init()
@@ -44,7 +34,7 @@ void bomb()
 {
 	init();		
 	bombon();
-	msDelay(10);	
+	Delay(10);	
 	bomboff();
 
 }
