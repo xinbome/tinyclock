@@ -1,17 +1,24 @@
 #include "led.h"
 #include "bomb.h"
 #include "key.h"
-int main(void){
-	//LEDAll_Init();
-	//LEDAll_TurnOn();
-	//LEDAll_TurnOff();	
-	//LED4_TurnOn();
-	//LED1_TurnOn();
-	//LEDAny_TurnOn(3);	
-	//init();
-	//bomb();		
+#include "irq.h"
+#include "sys.h"
 
-	key_test();
+
+int main(void){
+
+	SYSTEM_EnableIRQ(); /* 使能CSPR寄存器中系统IRQ */
+	SYSTEM_EnableVIC(); /* 使能VIC矢量中断寄存器   */
+
+	LEDAll_Init();     
+	
+	KEYS_Init();       	
+	while(1)
+	{
+	
+		Isr_Eint();
+	}     
+	
 	return 0;
 }
 
