@@ -13,24 +13,69 @@ void key_init(void)
 
 void key_test(void)
 {
+	int bomb_count = 0;
 	key_init();
+	
 	while(1)
 	{			
-		if((GPNDAT&0x0F) == 0x0F)//未按
+		//未按	
+		if((GPNDAT&0x0F) == 0x0F)
 		{
 			LEDAll_Init();
-			LEDAny_TurnOn(3);
-			LEDAll_Init();				
+			LEDAll_TurnOff();			
 		}
-		else //按下
-		{
+		
 
-			bomb();					
-			//LEDAll_TurnOn();
-			//LEDAll_TurnOff();	
-			//LED4_TurnOn();
-			//LED1_TurnOn();
+		//0b0111,按下4号键		
+		if((GPNDAT&0x0F) == 0x07)
+		{
+			bomb_count = 4;
+			while(bomb_count--)
+			{
+				bomb();
+			}
+			LEDAll_Init();			
+			LEDAny_TurnOn(4);			
 		}
+
+		//0b1011,按下3号键
+		if((GPNDAT&0x0F) == 0x0B)
+		{
+			bomb_count = 3;
+			while(bomb_count--)
+			{
+				bomb();
+			}
+			LEDAll_Init();			
+			LEDAny_TurnOn(3);			
+		}
+
+		
+		//0b1101,按下2号键
+		if((GPNDAT&0x0F) == 0x0D)
+		{
+			bomb_count = 2;
+			while(bomb_count--)
+			{
+				bomb();
+			}
+			LEDAll_Init();			
+			LEDAny_TurnOn(2);			
+		}
+
+
+		//0b1110,按下1号键
+		if((GPNDAT&0x0F) == 0x0E)
+		{
+			bomb_count = 1;
+			while(bomb_count--)
+			{
+				bomb();
+			}
+			LEDAll_Init();			
+			LEDAny_TurnOn(1);			
+		}
+						
 	}
 }
 

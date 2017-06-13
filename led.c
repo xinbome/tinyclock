@@ -1,5 +1,23 @@
 #include "led.h"
 
+void LED1_TurnOn(void)
+{
+	//GPKDAT = 0XFFEF;
+	int value = 0;
+	value = GPKDAT;
+	value &= ~(0x1 <<4);
+	GPKDAT = value;	
+}
+
+void LED4_TurnOn(void)
+{
+	//GPKDAT = 0XFF7F;
+	int value = 0;
+	value = GPKDAT;
+	value &= ~(0x1 <<7);
+	GPKDAT = value;		
+}
+
 
 void LEDAll_Init(void)
 {
@@ -38,23 +56,6 @@ void LEDAll_TurnOff(void)
 	
 }
 
-void LED1_TurnOn(void)
-{
-	//GPKDAT = 0XFFEF;
-	int value = 0;
-	value = GPKDAT;
-	value &= ~(0x1 <<4);
-	GPKDAT = value;	
-}
-
-void LED4_TurnOn(void)
-{
-	//GPKDAT = 0XFF7F;
-	int value = 0;
-	value = GPKDAT;
-	value &= ~(0x1 <<7);
-	GPKDAT = value;		
-}
 
 
 void LEDAny_TurnOn(int num)
@@ -67,7 +68,7 @@ void LEDAny_TurnOn(int num)
 		num = 1;
 	}
 	
-	if(num < 4)
+	if(num > 4)
 	{
 		num = 4;
 	}
@@ -81,6 +82,27 @@ void LEDAny_TurnOn(int num)
 
 
 
+void LEDAny_TurnOff(int num)
+{
+	
+	unsigned int value = 0;
+	
+	if(num < 1)
+	{
+		num = 1;
+	}
+	
+	if(num > 4)
+	{
+		num = 4;
+	}
+	
+	value = GPKDAT;
+	
+	value |=  0x1<<(3+num);
+	
+	GPKDAT = value;
+}
 
 
 
