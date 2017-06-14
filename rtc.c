@@ -22,25 +22,7 @@ long BCD_to_DEC(long BCD_Code){
 	return ((BCD_Code >> 4)*10+(BCD_Code&0x0f));
 }
 
-/*
-long year_convert_to_BCD(long DEC){
-	long temp1,temp2,total;
-	temp2 = DEC % 100;
-	temp1 = DEC/100;
-	total = DEC_to_BCD(temp1) << 8 + DEC_to_BCD(temp2);	 
-	return total;
-	
-}
 
-long year_convert_to_DEC(long BCD){
-	long temp1,temp2,total;
-	temp1 = BCD >> 8;
-	temp2 = BCD & 0x00FF;
-	total = BCD_to_DEC(temp1) * 100 + BCD_to_DEC(temp2);
-	return total;
-}
-
-*/
 void time_printf(void)
 {
 	long uyear,umonth,udate,uhour,umin,usec,uday;

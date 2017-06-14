@@ -27,13 +27,12 @@ const unsigned char *gImages[]={
 
 
 
-
 /* g_PCLK = 66500000; */
 
 int main(void){
 
 	//char c = 0;	
-	int i = 0;		
+	//int i = 0;		
 	SYSC_GetClkInform();
 		
 	UART_Init();
@@ -60,26 +59,30 @@ int main(void){
 	}*/
 	
 	
-	LCD_Init();
+		LCD_Init();
 	
 	/* 绘制屏幕底色 */
-	LCD_ClearScreen(0xffff);	
+	LCD_ClearScreen(0xffff);
 	
-	/* 循环 */
-	while(1){
 	
-		/* 0~10循环计数 */
-		if(i>=10){
-			i = 0;
-		}
-		
-		/* 绘制计数对应的数字图片 */
-		Paint_Bmp(56, 40, 83, 128, gImages[i]);
-		i++;
-		
-		/* 延时 */
-		Delay(100000);		
+	Paint_Bmp(20, 20, 51, 80, gImages[0]);
+	Paint_Bmp(91, 20, 51, 80, gImages[1]);	
+	Paint_Bmp(162,20, 51, 80, gImages[2]);
+	Paint_Bmp(233,20, 51, 80, gImages[3]);	
+	Paint_Bmp(304,20, 51, 80, gImages[4]);	
+	Paint_Bmp(375,20, 51, 80, gImages[5]);	
+	Paint_Bmp(446,20, 51, 80, gImages[6]);	
+	Paint_Bmp(517,20, 51, 80, gImages[7]);		
+	Paint_Bmp(588,20, 51, 80, gImages[8]);			
+	Paint_Bmp(659,20, 51, 80, gImages[9]);			
+	Paint_Bmp(730,20, 51, 80, gImages[9]);						
+	while(1)
+	{
+   	//Paint_Bmp(56, 168, 83, 128, gImages[4]);	
+   	;	
 	}	
+		
+	
 }
 
 
