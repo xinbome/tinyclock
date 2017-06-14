@@ -39,11 +39,6 @@ void set_week(int DEC_week);
 void set_date(int DEC_date);
 
 
-void set_month(int DEC_month);
-
-void set_year(int DEC_year);
-
-
 
 
 #endif

@@ -97,4 +97,5 @@ void set_year(int DEC_year)
 	{		
 		BCDYEAR = DEC_to_BCD(DEC_year - 2000);
 	}
+	
 }
