@@ -16,10 +16,7 @@ long DEC_to_BCD(long DEC_Code);//10进制值转bcd
 
 long BCD_to_DEC(long BCD_Code);//bcd转10进制
 
-//long year_convert_to_BCD(long DEC);
 
-
-//long year_convert_to_DEC(long BCD);
 
 
 void time_printf(void);
@@ -38,7 +35,10 @@ void set_week(int DEC_week);
 
 void set_date(int DEC_date);
 
+void set_month(int DEC_month);
 
+
+void set_year(int DEC_year);
 
 
 #endif

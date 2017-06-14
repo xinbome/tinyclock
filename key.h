@@ -10,7 +10,7 @@
 
 /*≤È—Ø*/
 void key_init(void);
-void key_test(void);
+int key_test(void);
 
 
 #endif

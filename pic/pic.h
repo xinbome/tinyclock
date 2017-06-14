@@ -27,4 +27,19 @@ extern const unsigned char gImage_bigblack8[];
 extern const unsigned char gImage_bigblack9[];
 extern const unsigned char gImage_tag[];
 
+
+extern const unsigned char gImage_thirdcolor0[];
+extern const unsigned char gImage_thirdcolor1[];
+extern const unsigned char gImage_thirdcolor2[];
+extern const unsigned char gImage_thirdcolor3[];
+extern const unsigned char gImage_thirdcolor4[];
+extern const unsigned char gImage_thirdcolor5[];
+extern const unsigned char gImage_thirdcolor6[];
+extern const unsigned char gImage_thirdcolor7[];
+extern const unsigned char gImage_thirdcolor8[];
+extern const unsigned char gImage_thirdcolor9[];
+extern const unsigned char gImage_thirdnao[];
+extern const unsigned char gImage_thirdzhong[];
+
+
 #endif

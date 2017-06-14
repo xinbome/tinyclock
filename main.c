@@ -44,6 +44,23 @@ const unsigned char *BigImages[]={
     gImage_tag	
 };
 
+/* 定义第三栏图片数组*/
+const unsigned char *ThirdImages[]={
+	gImage_thirdcolor0,
+	gImage_thirdcolor1,
+	gImage_thirdcolor2,
+	gImage_thirdcolor3,
+	gImage_thirdcolor4,
+	gImage_thirdcolor5,
+	gImage_thirdcolor6,
+	gImage_thirdcolor7,
+	gImage_thirdcolor8,
+	gImage_thirdcolor9,
+	gImage_thirdnao,
+	gImage_thirdzhong	
+};
+
+
 
 
 /* g_PCLK = 66500000; */
@@ -53,7 +70,17 @@ int main(void){
 	//char c = 0;	
 	//int i = 0;
 	//long a,b,c,d,e,f = 0;
-	//long dec_year,dec_mon_,dec_day,dec_hour;	
+	long hour,minute = 0;
+	long uyear = BCD_to_DEC(BCDYEAR); 
+	long umonth =  BCD_to_DEC(BCDMON);
+	long udate =  BCD_to_DEC(BCDDATE);
+	long uhour =  BCD_to_DEC(BCDHOUR);
+	long uminute =  BCD_to_DEC(BCDMIN);
+	long usec =  BCD_to_DEC(BCDSEC);	
+	hour = 18;
+	minute = 4; 
+			
+	//int flag = 0;
 	SYSC_GetClkInform();
 		
 	UART_Init();
@@ -89,7 +116,7 @@ int main(void){
 	while(1)
 	{
 	
-
+	key_init();
 	//年月日第一栏
 
 	Paint_Bmp(20, 20, 51, 80, gImages[2]);
@@ -118,20 +145,117 @@ int main(void){
 
 	
 	//闹钟
-	Paint_Bmp(24, 380, 80, 80, gImages[2]);
-	Paint_Bmp(128, 380, 80, 80, gImages[2]);
+	Paint_Bmp(24, 380, 80, 80, 	ThirdImages[10]);
+	Paint_Bmp(128, 380, 80, 80, ThirdImages[11]);
 	//Paint_Bmp(232, 140, 80, 200, gImages[2]);
-	Paint_Bmp(306, 380, 80, 80, gImages[2]);
-	Paint_Bmp(410, 380, 80, 80, gImages[2]);
-	Paint_Bmp(514, 380, 50, 80, gImages[2]);
-	Paint_Bmp(588, 380, 80, 80, gImages[2]);						
-	Paint_Bmp(692, 380, 80, 80, gImages[2]);		
-						
-	}
-
+	Paint_Bmp(306, 380, 80, 80, ThirdImages[hour/10]);
+	Paint_Bmp(410, 380, 80, 80, ThirdImages[hour%10]);
+	Paint_Bmp(514, 380, 50, 80, BigImages[10]);
+	Paint_Bmp(588, 380, 80, 80, ThirdImages[minute/10]);						
+	Paint_Bmp(692, 380, 80, 80, ThirdImages[minute%10]);
 	
+	
+	
+	//1键位增加系统时间分钟，2键位减少系统时间分钟
+	if(key_test() == 1)
+	{
+		uminute++;
+		if(uminute == 60)
+		{
+			uhour++;
+			uminute = 0;
+			if(uhour == 24)
+			{
+				uhour = 0;
+				//udate++;这里有个bug,每个月天数都不一样，我晚上写个详细的算法来更改日期
+			}
+		}
+	}
 		
 	
+	
+	if(key_test() == 2)
+	{
+		uminute--;
+		if(uminute == -1)
+		{
+			uhour--;
+			uminute = 59;
+			if(uhour == 0)
+			{
+				uhour = 23;
+				//udate--;这里还缺一个详细的算法
+			}
+		}
+	}	
+		
+	
+	
+	
+	
+	//3键位增加闹钟分钟，4键位减少闹钟分钟	
+	if(key_test() == 3)
+	{
+		minute++;
+		if(minute == 60)
+		{
+			hour++;
+			minute = 0;
+			if(hour == 24)
+			{
+				hour = 0;
+			}
+		}
+	}
+	
+	if(key_test() == 4)
+	{
+		minute--;
+		if(minute == -1)
+		{
+			hour--;
+			minute = 59;
+			if(hour == 0)
+			{
+				hour = 23;
+			}
+		}
+	}
+	
+	
+	
+	write_open();//RTCCON[0]=1,开放写的权限
+
+	set_min(uminute);
+
+	set_hour(uhour);
+
+	set_date(udate);
+
+	set_month(umonth);
+
+
+	set_year(uyear);
+
+
+	write_close();//RTCCON[0]=0,关闭写的权限
+
+
+
+	
+	
+	//这判断式也决定了只要一按键，闹钟就会不响，闹钟每次响也只会响1分钟
+	if((minute == BCD_to_DEC(BCDMIN))&& (hour == BCD_to_DEC(BCDHOUR)))		
+	{
+		bomb();
+		key_test();
+	}
+			
+	
+	}
+
+
+
 }
 
 

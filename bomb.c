@@ -34,7 +34,7 @@ void bomb()
 {
 	init();		
 	bombon();
-	Delay(10);	
+	Delay(5000);	
 	bomboff();
 
 }
