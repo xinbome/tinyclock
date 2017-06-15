@@ -251,7 +251,7 @@ int main(void){
 			LCD_ClearScreen(0xffff);		
 			while(1)
 			{
-				if(key_test() == -1)
+				if(key_test() != 0)
 				{
 					break;
 				}
@@ -261,13 +261,34 @@ int main(void){
 				Paint_Bmp(364, 200, 50, 80, BigImages[10]);
 				Paint_Bmp(438, 200, 80, 80, ThirdImages[BCD_to_DEC(BCDMIN)/10]);						
 				Paint_Bmp(542, 200, 80, 80, ThirdImages[BCD_to_DEC(BCDMIN)%10]);				
-				if((minute == BCD_to_DEC(BCDMIN))&& (hour == BCD_to_DEC(BCDHOUR)))		
-				{
-					bomb();
-				}
+				
 			}
 			LCD_ClearScreen(0xffff);			
 		}
+		
+		
+		if(key_test() == -2)
+		{
+			LCD_ClearScreen(0xffff);		
+			while(1)
+			{
+				if(key_test() != 0)
+				{
+					break;
+				}
+				
+				//ƒ÷÷”
+				Paint_Bmp(24, 200, 80, 80, 	ThirdImages[10]);
+				Paint_Bmp(128,200, 80, 80, ThirdImages[11]);
+				//Paint_Bmp(232, 140, 80, 200, gImages[2]);
+				Paint_Bmp(306,200, 80, 80, ThirdImages[hour/10]);
+				Paint_Bmp(410,200, 80, 80, ThirdImages[hour%10]);
+				Paint_Bmp(514,200, 50, 80, BigImages[10]);
+				Paint_Bmp(588,200, 80, 80, ThirdImages[minute/10]);						
+				Paint_Bmp(692,200, 80, 80, ThirdImages[minute%10]);
+			}
+			LCD_ClearScreen(0xffff);			
+		}		
 				
 	
 	}

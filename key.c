@@ -83,7 +83,7 @@ int key_test(void)
 		flag = -1; 			
 	}
 	
-	/*
+	
 	//0b0011,同时按下3,4两号键
 	if((GPNDAT&0x0F) == 0x03)
 	{
@@ -91,7 +91,7 @@ int key_test(void)
 
 		flag = -2; 			
 	}
-	*/
+	
 			
 	return flag;				
 
