@@ -1,15 +1,5 @@
 #include "bomb.h"
-
-
-
-void msDelay(int time)
-{
-	
-	volatile unsigned int i,j;
-	for(i = 0;i < 20000;i++)
-		for(j = 0;j < time;j++);
-}
-
+#include "utils.h"
 
 
 void init()
@@ -17,7 +7,6 @@ void init()
 	GPFCON = GPFCON & (~(0x1 << (29)));//29位0，其余1 GPF14
 	GPFCON = GPFCON|(0x1 <<(2*14));//28位1,01表示输出
 	GPFPUD = GPFPUD & (~(0x3 << (2*14)));
-	//GPFDAT = 0x0000;
 	GPFDAT &= ~(0x1<<14);	
 }
 
@@ -44,7 +33,7 @@ void bomb()
 {
 	init();		
 	bombon();
-	msDelay(10);	
+	Delay(5000);	
 	bomboff();
 
 }
