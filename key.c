@@ -74,6 +74,25 @@ int key_test(void)
 		LEDAny_TurnOn(1);
 		flag = 1; 			
 	}
+	
+	//0b1100,同时按下1,2两号键
+	if((GPNDAT&0x0F) == 0x0C)
+	{
+
+
+		flag = -1; 			
+	}
+	
+	/*
+	//0b0011,同时按下3,4两号键
+	if((GPNDAT&0x0F) == 0x03)
+	{
+
+
+		flag = -2; 			
+	}
+	*/
+			
 	return flag;				
 
 }
